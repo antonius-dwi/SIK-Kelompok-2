@@ -1,11 +1,4 @@
-{{--
-    Isi form pengajuan (dipakai form pemohon dan koreksi Admin).
-    Variabel: $application (nullable), $areas, $workTypes.
-    Peringatan templat hanya untuk form pemohon: $showTemplateWarning (bool)
-    dan $templateCombos (daftar "areaId:workTypeId" bertemplat aktif).
-    Form koreksi Admin tidak mengirim keduanya, jadi tidak ada peringatan di Admin.
-    Mengisi ulang dari old() bila validasi gagal; selain itu dari data tersimpan.
---}}
+{{-- Isi form pengajuan (dipakai form pemohon dan koreksi Admin). Variabel: $application (nullable), $areas, $workTypes. Peringatan templat hanya untuk form pemohon ($showTemplateWarning dan $templateCombos); form koreksi Admin tidak mengirim keduanya, jadi tidak ada peringatan di Admin. Mengisi ulang dari old() bila validasi gagal; selain itu dari data tersimpan. --}}
 @php
     $app = $application ?? null;
     $hasRequestLetter = $app?->documents->where('kind', 'request')->isNotEmpty() ?? false;

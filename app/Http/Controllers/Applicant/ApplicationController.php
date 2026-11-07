@@ -126,13 +126,7 @@ class ApplicationController extends Controller
         return app(\App\Services\PermitPdfService::class)->data($application);
     }
 
-    /**
-     * Pratinjau SIK sebelum diterbitkan (halaman admin "Terbitkan SIK").
-     *
-     * Nomor & tanggal dari formulir penerbitan dipakai hanya untuk tampilan dokumen
-     * (in-memory, tidak disimpan), sehingga tidak ada perubahan data maupun audit log.
-     * Setelah SIK terbit, data asli dari database yang dipakai.
-     */
+    /** Pratinjau SIK sebelum diterbitkan (halaman admin "Terbitkan SIK"). Nomor dan tanggal isian hanya untuk tampilan (in-memory, tidak disimpan, tanpa audit log); setelah terbit, data database yang dipakai. */
     private function applyDraftPreview(Request $request, PermitApplication $application): void
     {
         if ($application->status === S::Issued) {

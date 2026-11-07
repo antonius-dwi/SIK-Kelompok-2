@@ -30,7 +30,7 @@ class ApplicationWorkflowService
         private readonly ApplicationDataService $data,
     ) {}
 
-    // ---------------------------------------------------------------- Pemohon
+    // Pemohon
 
     /** Draf baru (belum ada record). */
     public function createDraft(User $actor): PermitApplication
@@ -75,7 +75,7 @@ class ApplicationWorkflowService
         });
     }
 
-    // ------------------------------------------------------------ Admin / Verifier
+    // Admin / Verifier
 
     public function startVerification(PermitApplication $application, User $actor): PermitApplication
     {
@@ -209,7 +209,7 @@ class ApplicationWorkflowService
         return sprintf('SIK/AYANI/%s/%03d', $year, $next);
     }
 
-    // -------------------------------------------------------------- Approver
+    // Approver
 
     /** @param 'approve'|'return'|'reject' $decision */
     public function decide(PermitApplication $application, User $actor, string $decision, ?string $comment): PermitApplication
@@ -255,7 +255,7 @@ class ApplicationWorkflowService
         });
     }
 
-    // --------------------------------------------------------------- Internal
+    // Internal
 
     private function lock(PermitApplication $application): PermitApplication
     {

@@ -8,10 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 
 /**
- * Akun contoh dari frontend demo. HANYA UNTUK DEVELOPMENT: kata sandi sama dengan di demo.
- * Ganti/hapus seeder ini sebelum production.
- *
- * Nama pada daftar ini adalah nama asli pemilik akun demo (lihat daftar akun login).
+ * Akun contoh dari frontend demo. Hanya untuk development: kata sandi sama dengan di demo; ganti/hapus seeder ini sebelum production. Nama pada daftar ini adalah nama asli pemilik akun demo (lihat daftar akun login).
  */
 class SikUserSeeder extends Seeder
 {

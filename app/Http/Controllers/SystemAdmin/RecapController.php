@@ -14,11 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 /**
- * Rekap SIK untuk administrator.
- *
- * Filter periode memakai dua basis tanggal yang berbeda dan tidak dicampur:
- * - "terbit"   : issue_date (dokumen benar-benar terbit, wajib bernomor SIK),
- * - "diajukan" : submitted_at (kapan pemohon mengirim pengajuan).
+ * Rekap SIK untuk administrator, dengan dua basis tanggal yang tidak dicampur: basis terbit memakai issue_date (dokumen benar-benar terbit, wajib bernomor SIK); basis diajukan memakai submitted_at (kapan pemohon mengirim pengajuan).
  */
 class RecapController extends Controller
 {

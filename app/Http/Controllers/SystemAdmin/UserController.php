@@ -115,14 +115,7 @@ class UserController extends Controller
         return back()->with('status', "Pengguna {$user->name} " . ($user->is_active ? 'diaktifkan.' : 'dinonaktifkan.'));
     }
 
-    /**
-     * Hapus pengguna.
-     *
-     * Akun yang masih direferensikan data historis (pengajuan, langkah persetujuan,
-     * riwayat, log audit, atau langkah template alur) TIDAK dihapus permanen —
-     * hanya dinonaktifkan agar integritas data tetap utuh. Akun tanpa riwayat
-     * apa pun boleh dihapus permanen.
-     */
+    /** Hapus pengguna. Akun yang masih direferensikan data historis tidak dihapus permanen, hanya dinonaktifkan agar integritas data tetap utuh; akun tanpa riwayat apa pun boleh dihapus permanen. */
     public function destroy(Request $request, User $user)
     {
         if ($user->is($request->user())) {

@@ -18,11 +18,7 @@ class Area extends Model
         return $query->where('is_active', true);
     }
 
-    /**
-     * Sisi bandara untuk instruksi surat: 'airside', 'landside', atau 'unknown'.
-     * Ditentukan dari KODE area (config sik.area_sides), bukan dari labelnya,
-     * supaya tetap benar walau nama area diedit.
-     */
+    /** Sisi bandara untuk instruksi surat: 'airside', 'landside', atau 'unknown'. Ditentukan dari kode area (config sik.area_sides), bukan labelnya, supaya tetap benar walau nama area diedit. */
     public function side(): string
     {
         $code = strtoupper(trim((string) $this->code));

@@ -9,11 +9,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
 /**
- * Form pemohon (draf / kirim). Nama field mengikuti form frontend:
- * applicantName, contactName, jobTitle, workDescription, area, workType (ID master), startDate, endDate,
- * personel_*[], barang_*[], requestLetter, attachments[].
- *
- * Tombol submit mengirim `action` = "draft" atau "submit".
+ * Form pemohon (draf / kirim). Nama field mengikuti form frontend: applicantName, contactName, jobTitle, workDescription, area, workType (ID master), startDate, endDate, personel_*[], barang_*[], requestLetter, attachments[]. Tombol submit mengirim action draft atau submit.
  */
 class SaveApplicationRequest extends FormRequest
 {
@@ -143,11 +139,7 @@ class SaveApplicationRequest extends FormRequest
     public function after(): array
     {
         return [function (Validator $validator) {
-            // Kombinasi tanpa templat TIDAK BOLEH dikirim ke Admin (hanya saat
-            // Kirim pengajuan; Simpan draf tetap boleh). Ini pagar server-nya:
-            // peringatan di form bisa dilewati client, validasi ini tidak.
-            // Dilewati bila area/workType sendiri sudah gagal validasi, supaya
-            // tidak menumpuk pesan yang salah di atas error required/exists.
+            // Kombinasi tanpa templat tidak boleh dikirim ke Admin (hanya saat Kirim; Simpan draf tetap boleh). Pagar server ini tidak bisa dilewati client; dilewati bila area/workType sendiri sudah gagal validasi supaya tidak menumpuk pesan yang salah.
             if ($this->isSubmit()) {
                 $areaId = (int) $this->input('area');
                 $workTypeId = (int) $this->input('workType');

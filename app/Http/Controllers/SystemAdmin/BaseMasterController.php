@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 /**
- * CRUD ringan (tanpa hapus; nonaktifkan saja) untuk master Area / Jenis pekerjaan / Departemen.
- * Menyediakan juga halaman daftar per modul (index) yang dipakai navigasi sidebar
- * System Administrator — data, validasi, dan otorisasi tetap sama dengan operasi CRUD di atas.
+ * CRUD ringan (tanpa hapus; nonaktifkan saja) untuk master Area / Jenis pekerjaan / Departemen. Halaman daftar per modul dipakai navigasi sidebar System Administrator; data, validasi, dan otorisasi tetap sama dengan operasi CRUD di atas.
  */
 abstract class BaseMasterController extends Controller
 {
@@ -79,13 +77,7 @@ abstract class BaseMasterController extends Controller
         return back()->with('status', "{$this->label()} {$entry->name} " . ($entry->is_active ? 'diaktifkan.' : 'dinonaktifkan.'));
     }
 
-    /**
-     * Hapus permanen master data.
-     *
-     * Hanya dijalankan bila data TIDAK direferensikan pengajuan/template/pengguna.
-     * Bila masih dipakai, penghapusan ditolak dan pengguna diarahkan memakai
-     * tombol nonaktifkan agar riwayat tetap utuh.
-     */
+    /** Hapus permanen master data, hanya bila tidak direferensikan pengajuan/template/pengguna. Bila masih dipakai, penghapusan ditolak dan pengguna diarahkan memakai tombol nonaktifkan agar riwayat tetap utuh. */
     public function destroy(Request $request, int $id)
     {
         $entry = ($this->model())::findOrFail($id);

@@ -19,14 +19,14 @@ use Illuminate\Support\Facades\Route;
 | didaftarkan di bootstrap/app.php (lihat README).
 */
 
-// ---- Tamu -------------------------------------------------------------------
+// Tamu
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'create'])->name('login');
     Route::post('/login', [LoginController::class, 'store'])->name('login.store');
     Route::view('/lupa-kata-sandi', 'auth.password')->name('password.help');
 });
 
-// ---- Pengguna masuk ---------------------------------------------------------
+// Pengguna masuk
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
     Route::get('/', DashboardController::class)->name('home');
@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents/{document}', [DocumentController::class, 'document'])->name('documents.show');
     Route::get('/item-photos/{item}', [DocumentController::class, 'itemPhoto'])->name('items.photo');
 
-    // ---- Applicant ----------------------------------------------------------
+    // Applicant
     Route::middleware('role:applicant')->prefix('pemohon')->name('applicant.')->group(function () {
         Route::get('/', [Applicant\ApplicationController::class, 'dashboard'])->name('dashboard');
         Route::get('/pengajuan/baru', [Applicant\ApplicationController::class, 'create'])->name('applications.create');
@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengajuan/{application}/sik/pdf', [Applicant\ApplicationController::class, 'permitPdf'])->name('applications.permit.pdf');
     });
 
-    // ---- Admin / Verifier ---------------------------------------------------
+    // Admin / Verifier
     Route::middleware('role:admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/antrean', [Admin\QueueController::class, 'index'])->name('queues');
 
@@ -70,20 +70,20 @@ Route::middleware('auth')->group(function () {
         Route::get('/pengajuan/{application}/sik/pdf', [Applicant\ApplicationController::class, 'permitPdf'])->name('permit.pdf');
     });
 
-    // ---- Approver -----------------------------------------------------------
+    // Approver
     Route::middleware('role:approver')->prefix('approver')->name('approver.')->group(function () {
         Route::get('/antrean', [Approver\ApprovalController::class, 'index'])->name('queue');
         Route::get('/pengajuan/{application}', [Approver\ApprovalController::class, 'show'])->name('show');
         Route::post('/pengajuan/{application}/keputusan', [Approver\ApprovalController::class, 'decide'])->name('decide');
     });
 
-    // ---- Management (hanya-baca) ---------------------------------------------
+    // Management (hanya-baca)
     Route::middleware('role:management')->prefix('manajemen')->name('management.')->group(function () {
         Route::get('/', [Management\MonitoringController::class, 'index'])->name('index');
         Route::get('/pengajuan/{application}', [Management\MonitoringController::class, 'show'])->name('show');
     });
 
-    // ---- System administrator -----------------------------------------------
+    // System administrator
     Route::middleware('role:system-admin')->prefix('sistem')->name('system-admin.')->group(function () {
         // Halaman gabungan lama (kompatibilitas tautan/anchor yang sudah ada).
         Route::get('/', [SystemAdmin\MasterDataController::class, 'index'])->name('index');

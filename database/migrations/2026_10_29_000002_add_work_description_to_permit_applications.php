@@ -5,9 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Menambah kolom uraian/tujuan pekerjaan pada pengajuan.
- * Sebelumnya surat SIK memakai `job_title` (jabatan) sebagai uraian pekerjaan,
- * sehingga jabatan seperti "Supervisor" tampil sebagai tujuan pekerjaan.
+ * Menambah kolom uraian/tujuan pekerjaan pada pengajuan. Sebelumnya surat SIK memakai job_title (jabatan) sebagai uraian pekerjaan, sehingga jabatan seperti Supervisor tampil sebagai tujuan pekerjaan.
  */
 return new class extends Migration
 {

@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap");
 
 :root {
-    /* ==== Palet InJourney Airports (dari logo resmi: cyan #18B0B8) ============ */
+    /* Palet InJourney Airports (dari logo resmi: cyan #18B0B8) */
     --sik-navy: #0A2A43;          /* teks struktural, header, panel gelap */
     --sik-navy-deep: #071E31;
     --sik-ink: #12293D;           /* teks utama */
@@ -49,12 +49,8 @@
     --sik-btn-font-sm: 11.5px;
 }
 
-/* ==== Sistem tombol (berlaku di seluruh role & modul) ========================
-   Satu sumber ukuran, radius, tipografi, ikon, dan state tombol. Bootstrap hanya
-   menyediakan perilaku dasar (.btn/.btn-sm); tampilan diatur di sini memakai token
-   proyek: hijau brand (--sik-primary) untuk aksi utama, biru aksi (--sik-accent)
-   untuk pengelolaan sekunder, merah untuk aksi merusak, amber untuk tindakan yang
-   perlu perhatian. */
+/* Sistem tombol (berlaku di seluruh role & modul): satu sumber ukuran, radius, tipografi, ikon, dan state tombol. */
+/* Bootstrap hanya menyediakan perilaku dasar; tampilan diatur di sini memakai token proyek untuk aksi utama, sekunder, merusak, dan perhatian. */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -258,11 +254,8 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .add-row-button { border-color: #cfdfd8; color: var(--sik-primary); font-size: 11px; font-weight: 700; }
 .add-row-button:hover { border-color: var(--sik-primary); color: var(--sik-primary); background: #f1f8f5; }
 .equipment-table-wrap { border: 1px solid var(--sik-border); border-radius: 8px; }
-/* Tabel muat penuh tanpa scroll horizontal dan tanpa mengurangi kolom:
-   lebar minimum 1070px dihapus, kolom boleh menyusut dan header boleh
-   patah baris, input mengisi lebar sel (bukan lebar minimum tetap).
-   .table-responsive dari Bootstrap ditimpa supaya tidak lagi memunculkan
-   scroll; di layar sangat sempit kolom akan rapat, bukan tersembunyi. */
+/* Tabel muat penuh tanpa scroll dan tanpa mengurangi kolom: lebar minimum dihapus, kolom boleh menyusut dan header patah baris. */
+/* .table-responsive dari Bootstrap ditimpa supaya tidak memunculkan scroll; di layar sangat sempit kolom rapat, bukan tersembunyi. */
 .equipment-table-wrap.table-responsive { overflow-x: visible; }
 .equipment-table { width: 100%; min-width: 0; margin: 0; }
 /* Semua kolom mulai dari atas yang sama: tanpa ini, sel berisi satu input
@@ -272,13 +265,8 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .equipment-table tbody td { min-width: 0; padding: 10px 7px; border-bottom: 1px solid #f0f2f5; vertical-align: top; }
 .equipment-table tbody tr:last-child td { border-bottom: 0; }
 .equipment-table .form-control, .equipment-table .form-select { width: 100%; min-width: 0; min-height: 30px; padding: 5px 6px; border-color: #e6eaf0; color: #475467; font-size: 11px; }
-/* Dropdown: padding kanan form-control (6px) TIDAK boleh dipakai select,
-   karena panah dropdown Bootstrap (16px) akan menimpa teks — itulah yang
-   membuat "Satu kali" tampil "Satu k" dengan panah di atasnya. Beri ruang
-   26px di kanan dan geser panah ke 6px dari tepi, plus lebar minimum untuk
-   kolom select (Kondisi/Arah/Frekuensi) supaya opsi terpanjang muat:
-   "Perlu perbaikan", "MASUK & KELUAR", "Satu kali". Kolom lain menyusut
-   mengikuti (table-layout auto), jadi tetap tanpa scroll. */
+/* Dropdown: padding kanan 6px menimpa teks dengan panah Bootstrap, itu yang membuat "Satu kali" tampil "Satu k". */
+/* Beri ruang 26px di kanan, panah di 6px dari tepi, dan lebar minimum kolom select supaya opsi terpanjang muat. */
 .equipment-table .form-select { padding: 5px 26px 5px 6px; background-position: right 6px center; background-size: 12px 9px; }
 .equipment-table th:nth-child(5), .equipment-table td:nth-child(5) { min-width: 120px; }
 .equipment-table th:nth-child(6), .equipment-table td:nth-child(6) { min-width: 125px; }
@@ -287,10 +275,6 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .equipment-table .qty-input { min-width: 0; width: 100%; }
 .stacked-inputs { display: grid; gap: 5px; min-width: 0; }
 .photo-upload { display: inline-flex; min-width: 0; align-items: center; justify-content: center; cursor: pointer; }
-/* Kotak "Penyebab warning di tabel..." dan catatan per-baris "Juga
-   bermasalah di baris ini" sudah dihapus: penyebab error kini hanya dari
-   kotak error global, jump link "Belum lengkap", dan pesan di bawah field
-   kolom itu sendiri, supaya tidak ada pengulangan yang sama. */
 @media (max-width: 991px) {
     .equipment-table thead th, .equipment-table tbody td { padding: 8px 5px; }
 }
@@ -454,11 +438,8 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .role-table tbody td > strong { color: #344054; font-size: 11px; }
 .role-table .btn { white-space: nowrap; }
 
-/* ==== Dashboard System Administrator ==========================================
-   Terlingkup .system-admin (lihat system-admin/index.blade.php) supaya penyesuaian
-   density/typography hanya berlaku di halaman ini. Kelas .role-table, .role-panel-card,
-   .role-heading, dan .section-heading p dipakai bersama oleh dashboard peran lain,
-   karena itu aturan di bawah sengaja tidak dipindah ke selector global. */
+/* Dashboard System Administrator: terlingkup .system-admin supaya penyesuaian density/typography hanya berlaku di halaman ini. */
+/* Kelas .role-table dan heading dipakai bersama dashboard peran lain, karena itu aturan di bawah sengaja tidak dipindah ke selector global. */
 .system-admin .role-heading h1 { font-size: 26px; }
 .system-admin .role-heading p,
 .system-admin .section-heading p,
@@ -521,10 +502,8 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
     .system-admin .cell-actions { gap: 6px; }
 }
 
-/* ==== Dashboard System Administrator ==========================================
-   Lingkup .system-admin (sama dengan halaman pengelolaan) supaya tidak memengaruhi
-   dashboard peran lain. Komponen memakai kembali kelas desain yang sudah ada
-   (.metric-card, .section-card, .role-table, .status-stat-list, .avatar). */
+/* Dashboard System Administrator: lingkup .system-admin supaya tidak memengaruhi dashboard peran lain. */
+/* Komponen memakai kembali kelas desain yang sudah ada (.metric-card, .section-card, .role-table, .status-stat-list, .avatar). */
 .system-admin .dashboard-heading {
     display: flex;
     align-items: flex-end;
@@ -646,7 +625,7 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .system-admin .activity-item span { display: block; margin-top: 2px; color: #8b97a6; font-size: 11.5px; overflow-wrap: anywhere; }
 .system-admin .activity-item time { color: #98a2b0; font-size: 11px; white-space: nowrap; }
 
-/* --- Kartu KPI: warna ikon per kartu + penanda tren ------------------------- */
+/* Kartu KPI: warna ikon per kartu + penanda tren */
 .system-admin .dashboard-metrics .metric-card { position: relative; min-height: 96px; padding: 16px 15px 14px; border-radius: 10px; }
 .system-admin .dashboard-metrics .metric-icon { width: 40px; height: 40px; flex: 0 0 40px; border-radius: 11px; font-size: 15px; }
 .system-admin .dashboard-metrics .metric-card strong { font-size: 25px; }
@@ -670,13 +649,13 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 }
 .system-admin .kpi-trend i { font-size: 8px; }
 
-/* --- Jam dua baris (tanggal + waktu) --------------------------------------- */
+/* Jam dua baris (tanggal + waktu) */
 .system-admin .dashboard-clock-text { display: grid; gap: 1px; }
 .system-admin .dashboard-clock-text strong { color: #344054; font-size: 12.5px; font-weight: 700; }
 .system-admin .dashboard-clock-text small { color: #8b97a6; font-size: 11.5px; font-weight: 600; }
 .system-admin .dashboard-clock i { font-size: 15px; }
 
-/* --- Baris 3 kolom: distribusi | status konfigurasi | aksi cepat ----------- */
+/* Baris 3 kolom: distribusi | status konfigurasi | aksi cepat */
 .system-admin .dashboard-grid-triple { grid-template-columns: 0.94fr 1fr 1.26fr; }
 
 /* Donut distribusi peran */
@@ -791,7 +770,7 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .status-stat-list strong { color: #344054; text-align: right; font-size: 11px; }
 .status-stat-list i { grid-column: 1 / -1; display: block; width: 100%; height: 5px; overflow: hidden; border-radius: 5px; background: linear-gradient(to right, var(--sik-primary) var(--stat-width), #edf0f4 var(--stat-width)); }
 .empty-state { padding: 20px !important; color: #8994a3 !important; text-align: center; }
-/* ==== Lembar SIK (format surat resmi, A4) ================================== */
+/* Lembar SIK (format surat resmi, A4) */
 .sik-sheet {
     width: 210mm;
     max-width: 100%;
@@ -1013,10 +992,8 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
     pointer-events: none;
 }
 
-/* Pola hexagon berada di belakang logo dan form, bukan di atas kontrol individual.
-   ::before bersifat positioned sehingga secara default melukis DI ATAS konten
-   non-positioned; jadikan .login-left-inner positioned dengan z-index agar isinya
-   melukis di atas pola. */
+/* Pola hexagon berada di belakang logo dan form, bukan di atas kontrol individual. */
+/* ::before melukis di atas konten non-positioned, jadi .login-left-inner dibuat positioned dengan z-index agar isinya melukis di atas pola. */
 .login-card .login-left-inner {
     position: relative;
     z-index: 1;
@@ -1261,7 +1238,7 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
     .crumbs .crumb-root { display: none; }
 }
 
-/* ---- Penerbitan SIK (admin): aksi pratinjau & unduh ------------------------------------- */
+/* Penerbitan SIK (admin): aksi pratinjau & unduh */
 .issuance-actions {
     display: flex;
     flex-wrap: wrap;

@@ -8,11 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 /**
- * Halaman verifikasi publik untuk dokumen SIK (tujuan QR pada surat).
- *
- * Sengaja hanya menampilkan data dokumen yang tidak sensitif: nomor SIK,
- * pemohon, area, jenis pekerjaan, periode, dan tanggal terbit. Nama personel,
- * nomor HP, dan catatan internal tidak pernah ditampilkan.
+ * Halaman verifikasi publik untuk dokumen SIK (tujuan QR pada surat). Hanya data tidak sensitif yang tampil; nama personel, nomor HP, dan catatan internal tidak pernah ditampilkan.
  */
 class PermitVerificationController extends Controller
 {

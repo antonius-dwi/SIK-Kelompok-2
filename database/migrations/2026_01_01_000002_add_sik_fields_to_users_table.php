@@ -7,12 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Menambah kolom SIK ke tabel users. Aman dijalankan pada project yang SUDAH punya tabel users
- * berisi data / kolom `role` lama (mis. nilai "user"):
- *  - kolom yang sudah ada tidak dibuat ulang (kolom `role` diubah menjadi string),
- *  - nilai role yang bukan role SIK dinormalkan menjadi "applicant",
- *  - user lama tanpa username diberi username dari email (atau "user{id}").
- * Login memakai `username`, jadi email dibuat nullable.
+ * Menambah kolom SIK ke tabel users, aman dijalankan pada project yang sudah punya tabel users berisi data dan kolom role lama. Kolom yang sudah ada tidak dibuat ulang (role diubah menjadi string), nilai role bukan role SIK dinormalkan menjadi applicant, user lama tanpa username diberi username dari email (atau user{id}); login memakai username, jadi email dibuat nullable.
  */
 return new class extends Migration
 {

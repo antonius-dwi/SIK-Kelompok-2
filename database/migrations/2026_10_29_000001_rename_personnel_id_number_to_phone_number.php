@@ -5,9 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Kolom personel `id_number` (nomor kartu identitas/KTP) diganti menjadi `phone_number`
- * (nomor HP). RENAME COLUMN hanya mengubah nama kolom: seluruh nilai lama tetap utuh,
- * tidak ada baris yang dihapus atau diubah isinya.
+ * Kolom personel id_number (nomor kartu identitas/KTP) diganti menjadi phone_number (nomor HP). RENAME COLUMN hanya mengubah nama kolom: seluruh nilai lama tetap utuh, tidak ada baris yang dihapus atau diubah isinya.
  */
 return new class extends Migration
 {

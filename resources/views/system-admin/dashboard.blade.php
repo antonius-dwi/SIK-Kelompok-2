@@ -27,7 +27,7 @@
 @endphp
 <div class="system-admin">
 
-{{-- ---- Heading halaman ------------------------------------------------------- --}}
+{{-- Heading halaman --}}
 <div class="dashboard-heading">
     <div class="dashboard-heading-main">
         <div class="eyebrow">ADMINISTRASI SISTEM</div>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-{{-- ---- Kartu ringkasan -------------------------------------------------------- --}}
+{{-- Kartu ringkasan --}}
 <section class="metric-grid dashboard-metrics" aria-label="Ringkasan sistem">
     @foreach ($summaryCards as $i => $card)
         <article class="metric-card kpi-{{ $kpiTones[$i] ?? 'blue' }}">
@@ -62,7 +62,7 @@
 
 <div class="dashboard-grid dashboard-grid-triple">
 
-    {{-- ---- Distribusi pengguna per peran ------------------------------------- --}}
+    {{-- Distribusi pengguna per peran --}}
     <article class="section-card role-panel-card">
         <div class="section-heading"><div><h2>Distribusi pengguna per peran</h2></div></div>
         <div class="sa-donut-wrap">
@@ -84,7 +84,7 @@
         </div>
     </article>
 
-    {{-- ---- Status Konfigurasi Sistem ----------------------------------------- --}}
+    {{-- Status Konfigurasi Sistem --}}
     <article class="section-card role-panel-card">
         <div class="section-heading"><div><h2>Status Konfigurasi Sistem</h2></div></div>
         <div class="sa-config-list">
@@ -99,7 +99,7 @@
         </div>
     </article>
 
-    {{-- ---- Aksi cepat --------------------------------------------------------- --}}
+    {{-- Aksi cepat --}}
     <article class="section-card role-panel-card">
         <div class="section-heading"><div><h2>Aksi cepat</h2></div></div>
         <div class="sa-quick-grid">
@@ -127,7 +127,7 @@
     </article>
 </div>
 
-{{-- ---- Aktivitas sistem terbaru ---------------------------------------------- --}}
+{{-- Aktivitas sistem terbaru --}}
 <article class="section-card role-panel-card sa-panel">
     <div class="section-heading">
         <div><h2>Aktivitas sistem terbaru</h2><p>{{ $activities->count() }} aktivitas terakhir pada sistem.</p></div>
@@ -154,7 +154,7 @@
 </article>
 
 <div class="dashboard-grid">
-    {{-- ---- Pengajuan terbaru -------------------------------------------------- --}}
+    {{-- Pengajuan terbaru --}}
     <article class="section-card role-panel-card">
         <div class="section-heading">
             <div><h2>Pengajuan terbaru</h2><p>{{ $applications->count() }} pengajuan izin kerja terbaru pada sistem.</p></div>
@@ -180,7 +180,7 @@
         </div>
     </article>
 
-    {{-- ---- Ringkasan konfigurasi --------------------------------------------- --}}
+    {{-- Ringkasan konfigurasi --}}
     <article class="section-card role-panel-card">
         <div class="section-heading"><div><h2>Ringkasan konfigurasi</h2><p>Status dan jumlah data pada sistem.</p></div></div>
         <div class="table-responsive role-table-wrap">

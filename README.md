@@ -1,141 +1,94 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="48" alt="Laravel Logo"></a></p>
-
-<h1 align="center">SIK - Sistem Izin Kerja Sisi Udara</h1>
-<p align="center">Aplikasi Laravel untuk pengelolaan <b>surat izin kerja (SIK)</b> di sektor penerbangan</p>
+<h1 align="center">SIK — Sistem Izin Kerja Sisi Udara</h1>
+<p align="center">Aplikasi Laravel untuk pengajuan, verifikasi, persetujuan berjenjang, dan penerbitan <b>Surat Izin Kerja (SIK)</b> di area terbatas sisi udara Bandar Udara Internasional Jenderal Ahmad Yani, Semarang.</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php" alt="PHP 8.2+">
   <img src="https://img.shields.io/badge/Laravel-11-FF2D20?logo=laravel" alt="Laravel 11">
+  <img src="https://img.shields.io/badge/Database-MySQL%20%2F%20MariaDB-4479A1?logo=mysql" alt="MySQL">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
 </p>
 
 ---
 
-## 🚀 Local Development
+## Fitur
 
-### Quick Start (XAMPP / Laragon)
+| Peran | Kemampuan |
+|---|---|
+| **Pemohon** | Buat pengajuan (pekerjaan, area, jenis pekerjaan, jadwal, personel, barang/peralatan, dokumen), simpan draf, kirim, perbaiki saat status Revisi, riwayat, unduh SIK terbit |
+| **Admin / Verifier** | Antrean verifikasi, mulai pemeriksaan, teruskan ke persetujuan atau kembalikan untuk revisi, tangani koreksi dari approver, terbitkan SIK |
+| **Approver** | Antrean persetujuan per tahap yang ditugaskan; Setujui / Kembalikan / Tolak (catatan wajib untuk pengembalian & penolakan) |
+| **Management** | Monitoring seluruh pengajuan (hanya baca) |
+| **System Administrator** | Pengguna, peran, departemen, area, jenis pekerjaan, templat alur persetujuan, audit log |
+
+Alur status:
+
+```
+DRAFT → SUBMITTED → VERIFICATION ─┬→ IN_APPROVAL (tahap 1..N) → APPROVED → ISSUED
+                                  └→ REVISION → SUBMITTED
+IN_APPROVAL → CORRECTION (return approver) → IN_APPROVAL (tahap yang sama)
+IN_APPROVAL → REJECTED
+VERIFICATION / CORRECTION → CLOSED
+```
+
+Tahap persetujuan **berurutan** dan ditentukan oleh kombinasi **Area + Jenis pekerjaan** (templat alur). Semua transisi divalidasi di server (`app/Services/ApplicationWorkflowService.php`), bukan hanya di tampilan.
+
+## Teknologi
+
+- PHP 8.2+ (diuji pada PHP 8.4), **Laravel 11.57**
+- MySQL / MariaDB, semua tabel `utf8mb4`
+- Blade + Bootstrap 5.2 (CDN), CSS/JS aplikasi di `public/` (tanpa build step)
+- `barryvdh/laravel-dompdf` (PDF SIK), `bacon/bacon-qr-code` (QR)
+
+## Menjalankan secara lokal
 
 ```bash
-cd D:\xampp\htdocs
-git clone <repo-url> sik-system
-cd sik-system
-
+composer install
 cp .env.example .env
 php artisan key:generate
-composer install
-php artisan migrate
+# sesuaikan DB_* pada .env, lalu:
+php artisan migrate --seed
 php artisan serve --host=127.0.0.1 --port=8000
 ```
 
-### Demo Accounts (local)
+## Akun demo (`database/seeders/SikUserSeeder.php`)
 
-| Role | Username | Password |
+| Username | Password | Peran |
 |---|---|---|
-| Applicant | `applicant` | `applicant123` |
-| Admin | `admin` | `admin123` |
-| Approver | `approver` | `approver123` |
-| Sysadmin | `sysadmin` | `sysadmin123` |
+| `applicant` | `applicant123` | Pemohon |
+| `admin` | `admin123` | Admin / Verifier |
+| `approver` | `approver123` | Approver — Manajer Operasi Sisi Udara |
+| `approver2` | `operations123` | Approver — Koordinator Operasi |
+| `approver3` | `technical123` | Approver — Koordinator Teknik |
+| `approver4` | `manager123` | Approver — Manajer Teknik |
+| `approver5` | `director123` | Approver — Kepala Bandara |
+| `management` | `management123` | Management |
+| `sysadmin` | `sysadmin123` | System Administrator |
 
-```bash
-php artisan test          # run tests
-php artisan migrate --fresh
+Kata sandi demo — ganti sebelum dipakai di lingkungan nyata.
+
+## Struktur proyek
+
 ```
+app/Enums/                  status pengajuan & peran
+app/Http/Controllers/       Applicant, Admin, Approver, Management, SystemAdmin
+app/Services/               ApplicationWorkflowService (seluruh transisi status),
+                            ApplicationDataService, AuditLogger, NotificationService
+app/Policies/               otorisasi per record
+database/migrations/        skema
+database/seeders/           master data, akun, templat alur
+resources/views/            layout, halaman per peran, template dokumen SIK
+routes/web.php              rute per peran
+public/                     aset statis (CSS, JS, gambar)
+```
+
+## Produksi
+
+- Domain: https://sik-aviation.site.je (hosting shared, tanpa SSH/Composer — `vendor/` disertakan)
+- Deploy: unggah isi paket ke `htdocs`, jalankan `migrate --force` lalu `optimize:clear`; hapus `storage/framework/views/*` setelah mengubah Blade
+- Dokumen SIK (PDF) dibuat di server dengan DomPDF
 
 ---
 
-## ☁️ Production (InfinityFree)
+## Lisensi
 
-- Docroot: `/htdocs/public`
-- PHP: 8.4.27 · Laravel 11.57.0 · Vendor disertakan
-- DB: `sql302.infinityfree.com` / `if0_43164138_sik_system`
-- Deploy: upload `/htdocs` via FTP, jalankan `migrate --force`, `optimize:clear`, `config:cache`
-
-```
-├── app/          # Controllers, Models, Services, Support
-├── database/     # Migrations + dump production (sik_production.sql)
-├── public/       # CSS/JS langsung (tanpa Vite)
-├── resources/
-├── routes/
-├── config/
-└── storage/
-```
-
----
-
-## 🔎 Verifikasi Produksi
-
-```bash
-cd POSTDEPLOY-SIK-20261028
-node scripts/verif_prod_deploy.js
-node scripts/verif_prod_modal.js          # H=700 ; H=950
-python scripts/verify_prod_hashes.py
-```
-
----
-
-## 📜 License
-
-MIT © [SIK Team](https://sik-aviation.site.je)
+MIT © SIK Kelompok 2

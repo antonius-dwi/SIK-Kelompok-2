@@ -14,11 +14,7 @@ use App\Models\WorkType;
 use Illuminate\Http\Request;
 
 /**
- * Dashboard System administrator: ringkasan konfigurasi, distribusi pengguna,
- * aktivitas sistem terakhir, dan pintasan ke halaman pengelolaan master data.
- *
- * Halaman pengelolaan lama (system-admin.index) tidak diubah dan tetap tersedia.
- * Semua angka diambil dari database; tidak ada angka hardcode dari mockup.
+ * Dashboard System administrator: ringkasan konfigurasi, distribusi pengguna, aktivitas sistem terakhir, dan pintasan ke halaman pengelolaan master data. Halaman pengelolaan lama (system-admin.index) tetap tersedia; semua angka diambil dari database, bukan angka hardcode dari mockup.
  */
 class DashboardController extends Controller
 {

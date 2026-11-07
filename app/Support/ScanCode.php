@@ -8,11 +8,7 @@ use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 
 /**
- * QR code untuk dokumen SIK (SVG, tanpa ekstensi GD).
- *
- * Sengaja memakai SVG karena DomPDF di hosting hanya butuh rasterizer internal;
- * PNG berbasis GD tidak selalu tersedia. QR ini untuk identifikasi/verifikasi
- * dokumen, bukan tanda tangan digital tersertifikasi.
+ * QR code untuk dokumen SIK (SVG, tanpa ekstensi GD). SVG dipakai karena DomPDF di hosting hanya butuh rasterizer internal dan PNG berbasis GD tidak selalu tersedia; QR ini untuk identifikasi/verifikasi dokumen, bukan tanda tangan digital tersertifikasi.
  */
 class ScanCode
 {

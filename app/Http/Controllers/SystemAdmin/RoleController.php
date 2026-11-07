@@ -9,13 +9,7 @@ use App\Services\AuditLogger;
 use Illuminate\Http\Request;
 
 /**
- * Halaman khusus daftar Peran. Peran adalah enum tetap di kode (tidak punya CRUD),
- * jadi halaman ini menampilkan peran yang dikenal sistem, jumlah akunnya, dan
- * daftar penugasan akun per peran.
- *
- * "Hapus penugasan" mencabut akses akun terhadap peran tersebut (akun
- * dinonaktifkan, riwayat tetap tersimpan). Akun TIDAK dihapus dan peran sistem
- * tidak dapat dihapus dari sistem.
+ * Halaman khusus daftar Peran. Peran adalah enum tetap (tanpa CRUD); halaman menampilkan peran yang dikenal sistem, jumlah akunnya, dan daftar penugasan akun per peran. Hapus penugasan menonaktifkan akun (riwayat tersimpan), bukan menghapus data, dan peran sistem tidak dapat dihapus.
  */
 class RoleController extends Controller
 {

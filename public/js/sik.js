@@ -7,7 +7,7 @@
     const all = (selector, parent = document) => [...parent.querySelectorAll(selector)];
     const csrf = () => one('meta[name="csrf-token"]')?.content || "";
 
-    // ---- Validasi server: fokus ke field pertama yang salah ------------------------
+    // Validasi server: fokus ke field pertama yang salah
     // Hanya saat halaman dimuat dengan error (redirect setelah validasi gagal).
     // Field yang sudah diperbaiki user kembali bersih, supaya pesan tidak menempel.
     const firstInvalid = one(".is-invalid");
@@ -21,13 +21,8 @@
         form.addEventListener("change", clearInvalid);
     });
 
-    // ---- Peringatan templat alur (form pemohon saja) -------------------------
-    // Div #templateWarning hanya dirender di form pemohon (application-fields
-    // dengan showTemplateWarning=true); form koreksi Admin tidak merendernya,
-    // jadi tidak ada peringatan di Admin. Saat peringatan merah tampil, tombol
-    // Kirim pengajuan dinonaktifkan (tombol Simpan draf tetap aktif); pagar
-    // sebenarnya ada di server (SaveApplicationRequest, hanya saat Kirim),
-    // jadi submit yang lolos dari client tetap ditolak server.
+    // Peringatan templat: hanya dirender di form pemohon, bukan form koreksi Admin.
+    // Saat tampil, tombol Kirim dinonaktifkan (Simpan draf tetap aktif); pagar sebenarnya ada di server saat Kirim.
     const templateWarning = one("#templateWarning");
     if (templateWarning) {
         const templateForm = templateWarning.closest("form") || document;
@@ -55,7 +50,7 @@
         updateTemplateWarning();
     }
 
-    // ---- Sidebar (mobile) -------------------------------------------------------------
+    // Sidebar (mobile)
     const sidebarToggle = one("#sidebarToggle");
     if (sidebarToggle) {
         sidebarToggle.addEventListener("click", () => {
@@ -70,7 +65,7 @@
         });
     }
 
-    // ---- Form pengajuan: baris personel / barang ------------------------------------------
+    // Form pengajuan: baris personel / barang
     const updateCounts = (form) => {
         all("[data-count-for]", form).forEach((badge) => {
             const type = badge.dataset.countFor;
@@ -108,14 +103,8 @@
                 updateCounts(form);
                 return;
             }
-            // Tombol "Kirim" SENGAJA tidak lagi dicegat reportValidity():
-            // gate itu menghentikan submit di field kosong pertama, sehingga
-            // validasi server tidak pernah jalan dan yang terlihat hanya
-            // tanda * (bukan pesan error per-field, per-tabel, dan ringkasan).
-            // Sekarang submit diteruskan ke server; server sudah memvalidasi
-            // semua field, termasuk tanggal selesai >= tanggal mulai dengan
-            // pesan yang sama, lalu halaman kembali dengan $errors lengkap.
-            // Tombol "Simpan draf" memakai formnovalidate seperti sebelumnya.
+            // Kirim sengaja tidak dicegat reportValidity: gate itu menyembunyikan error server di balik tanda *.
+            // Submit diteruskan ke server, lalu halaman kembali dengan $errors lengkap.
         });
 
         form.addEventListener("input", (event) => {
@@ -166,7 +155,7 @@
         });
     }
 
-    // ---- Keputusan Approver ---------------------------------------------------------------
+    // Keputusan Approver
     const decisionForm = one("[data-decision-form]");
     if (decisionForm) {
         const comment = one("#decisionComment", decisionForm);
@@ -197,7 +186,7 @@
         refresh();
     }
 
-    // ---- Verifikasi: revisi wajib catatan -------------------------------------------------
+    // Verifikasi: revisi wajib catatan
     const verificationForm = one("[data-verification-form]");
     if (verificationForm) {
         const note = one("#verificationNote", verificationForm);
@@ -211,7 +200,7 @@
         note.addEventListener("input", () => note.classList.remove("is-invalid"));
     }
 
-    // ---- Koreksi: tutup pengajuan hanya bila ditandai ---------------------------------------
+    // Koreksi: tutup pengajuan hanya bila ditandai
     const closeForm = one("[data-close-form]");
     if (closeForm) {
         const toggle = one("[data-close-toggle]", closeForm);
@@ -222,7 +211,7 @@
         });
     }
 
-    // ---- Penerbitan SIK: pratinjau & unduh memakai lembar SIK yang sama ---------------------
+    // Penerbitan SIK: pratinjau & unduh memakai lembar SIK yang sama
     // Nomor/tanggal isian hanya dipakai untuk URL pratinjau & PDF (data pratinjau, tidak disimpan).
     const permitNumber = one("#issuedPermitNumber");
     const issueDate = one("#issueDate");
@@ -257,7 +246,7 @@
         sync();
     }
 
-    // ---- Notifikasi ----------------------------------------------------------------------
+    // Notifikasi
     const bell = one("#notificationToggle");
     if (bell) {
         const menu = one("#notificationMenu");
@@ -309,7 +298,7 @@
         window.setInterval(load, 60000);
     }
 
-    // ---- Modal master data (Area / Jenis pekerjaan / Departemen) ------------------------------------
+    // Modal master data (Area / Jenis pekerjaan / Departemen)
     const showModal = (selector) => bootstrap.Modal.getOrCreateInstance(one(selector)).show();
     const masterForm = one("#masterForm");
     if (masterForm) {
@@ -329,7 +318,7 @@
         });
     }
 
-    // ---- Modal pengguna -----------------------------------------------------------------------
+    // Modal pengguna
     const userForm = one("#userForm");
     if (userForm) {
         const open = (button, editing) => {
@@ -356,13 +345,13 @@
         });
     }
 
-    // ---- Konfirmasi tindakan destruktif (hapus pengguna/peran/master data) ---------------------
+    // Konfirmasi tindakan destruktif (hapus pengguna/peran/master data)
     document.addEventListener("submit", (event) => {
         const form = event.target.closest("form[data-confirm]");
         if (form && !window.confirm(form.dataset.confirm)) event.preventDefault();
     });
 
-    // ---- Modal templat alur (maks. 8 tahap) --------------------------------------------------------
+    // Modal templat alur (maks. 8 tahap)
     const workflowForm = one("#workflowForm");
     if (workflowForm) {
         const container = one("#workflowSteps");
@@ -411,7 +400,7 @@
         });
     }
 
-    // ---- Modal pratinjau SIK: iframe pratinjau + unduh PDF langsung (fetch → blob) --------
+    // Modal pratinjau SIK: iframe pratinjau + unduh PDF langsung (fetch → blob)
     const permitModal = one("#permitModal");
     if (permitModal) {
         const frame = one(".permit-frame", permitModal);

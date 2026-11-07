@@ -29,7 +29,8 @@ DEPLOY.md
 check_env.php
 phpunit.xml
 nul
-r_sys/
+r_sys
+r_sys
 
 
 # Storage (Laravel standard)
@@ -38,3 +39,6 @@ r_sys/
 /storage/framework/testing
 /storage/framework/views
 /storage/logs
+
+# Dump database berisi data produksi (jangan diunggah)
+/database/*.sql

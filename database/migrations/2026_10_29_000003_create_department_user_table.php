@@ -6,12 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 /**
- * Penugasan multi-unit untuk pengguna (khususnya Approver).
- *
- * Non-destruktif: kolom lama `users.department_id` tetap dipertahankan sebagai
- * unit utama (dipakai tampilan lama dan kompatibilitas data), sedangkan daftar
- * lengkap unit disimpan di pivot `department_user`. Data lama disalin ke pivot
- * sehingga tidak ada penugasan yang hilang.
+ * Penugasan multi-unit untuk pengguna (khususnya Approver), non-destruktif: kolom lama users.department_id tetap dipertahankan sebagai unit utama, daftar lengkap unit disimpan di pivot department_user, dan data lama disalin ke pivot sehingga tidak ada penugasan yang hilang.
  */
 return new class extends Migration
 {
